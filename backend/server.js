@@ -1,20 +1,22 @@
-import express from "express"
-import cors from "cors"
-import restaurants from "./api/restaurants.route.js"
+import express from "express";
+import cors from "cors";
+import restaurants from "./api/restaurants.route.js";
 
-const app = express()
+const app = express();
 
-app.use(cors())
-// app can accept json files
-app.use(express.json())
+const corsOptions = {
+  origin: [
+    "http://localhost:3000",
+    "https://food-finder-oro4.onrender.com"
+  ],
+  credentials: true,
+};
 
-// our MAIN URL, route is in restaurants file
-app.use("/api/v1/restaurants", restaurants)
-// when a user goes to a route that does not exist
-app.use("*", (req, res) => res.status(404).json({ error: "not found" }))
+app.use(cors(corsOptions));
+app.use(express.json());
 
-// allows you to import this module in the file that accesses the database
-export default app
+app.use("/api/v1/restaurants", restaurants);
 
+app.use("*", (req, res) => res.status(404).json({ error: "not found" }));
 
-
+export default app;
