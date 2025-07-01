@@ -9,6 +9,7 @@ const corsOptions = {
     "http://localhost:3000",
     "https://food-finder-oro4.onrender.com"
     "https://foodfinderapp.org"
+    "https://www.foodfinderapp.org"
   ],
   credentials: true,
 };
